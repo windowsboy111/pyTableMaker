@@ -1,3 +1,7 @@
+html {
+    background-color: #111111;
+}
+
 head.header {
     border-style: solid;
     border-width: medium;
@@ -8,7 +12,7 @@ head.header {
 }
 
 body {
-    background-color: lightblue;
+    background-color: blue;
     border-color: red;
     border-width: medium;
     border-style: solid;
@@ -17,12 +21,12 @@ body {
 }
 
 p {
-    background-color: lightcoral;
+    background-color: #ff0000;
     opacity: 0.8;
 }
 
 code {
-    background-color: lightgray;
+    background-color: #bbbbbb;
     font-size: 0.7em;
     color: white;
     font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
