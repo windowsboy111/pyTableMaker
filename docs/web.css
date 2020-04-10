@@ -14,8 +14,6 @@ head.header {
 }
 
 body {
-    background-color: blue;
-    border-color: red;
     border-width: medium;
     border-style: solid;
     font-style: oblique;
