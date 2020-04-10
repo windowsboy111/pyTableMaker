@@ -156,81 +156,7 @@ class modernTable:
 
 
 
-class classicTable:
-    def __init__(self,data:dict=OrderedDict(), colMaxLen:list=[]):
-        """
-        Initialize a table creation.  (classic table with +,-,|)
-        Optional arg1: data.  type is dict.
-        Optional arg2: colMaxLen.  type is list.  Must be passed if you have the dict (arg1) passed.
-        """
-        self.data = data
-        self.row = 0
-        self.colMaxLen = colMaxLen
-
-
-
-
-    def new_column(self,name):
-        class column:
-            def __init__(self,obj,name):
-                """
-                create a new column (initialize)
-                arg1: name.  Name of the new column.
-                return: column location
-                """
-                obj.data[name]=list()
-                obj.colMaxLen.append(len(name))
-                self.name = name
-                self.location = len(obj.colMaxLen) -1
-                self.obj = obj
-            def rename(self,newname):
-                """
-                rename the column (and move to end)
-                arg1: newname.
-                return: old name
-                """
-                oldname = self.name
-                rowdata = self.obj.data[self.name]
-                del self.obj.data[self.name]
-                self.obj.data[newname] = rowdata
-                self.name = newname
-                self.location = len(self.obj.colMaxLen) -1
-                return oldname
-            def delete(self):
-                """
-                delete the column
-                no arguments
-                """
-                del self.obj.data[self.name]
-            def moveToEnd(self):
-                """
-                move a column
-                arg1: location:int. (it's an index of a list)
-                """
-                self.obj.colMaxLen.insert(self.location, self.obj.colMaxLen.pop(self.location))
-                self.location = len(self.obj.colMaxLen) -1
-        return column(self,name)
-
-
-
-
-    def insert(self,*values):
-        """
-        insert a row.
-        arg1: values. The value for the row.
-        return: the longest length of columns (list)
-        """
-        self.row += 1
-        loopCount = 0                                                                               # for the index loop of the list
-        for column in self.data:                                                                    # column is the key
-            self.data[column].append(str(values[loopCount]))
-            self.colMaxLen[loopCount] = max(self.colMaxLen[loopCount],len(str(values[loopCount])),len(column))
-            loopCount += 1
-        return self.colMaxLen
-
-
-
-
+class classicTable(modernTable):
     def get(self):
         """Return back the table in string.  No arguments."""
         result = '+'                                                # top line
@@ -287,18 +213,4 @@ class classicTable:
             colNum += 1
         result = result[:-1]
         result += '+\n'
-        return result
-
-
-
-
-    def remove(self,rowNum):
-        """
-        remove a row
-        arg1: rowNum.  (index of a list)
-        return: list with all removed values
-        """
-        result = list()
-        for column in self.data:
-            result.append(self.data[column].pop(rowNum))
         return result
