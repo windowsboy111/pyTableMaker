@@ -4,6 +4,10 @@ html {
     color: white;
 }
 
+h1 {
+    color=#ffff00
+}
+
 head.header {
     border-style: solid;
     border-width: medium;
