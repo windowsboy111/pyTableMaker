@@ -8,6 +8,14 @@ h1 {
     color:#ffff00;
 }
 
+h2 {
+    color: lime;
+}
+
+h3 {
+    color: lightgrey;
+}
+
 head.header {
     border-style: solid;
     border-width: medium;
