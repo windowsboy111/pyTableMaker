@@ -1,12 +1,14 @@
 head {
     border-style: solid;
-    border-width: 2px;
+    border-width: medium;
+    border-color: lightgoldenrodyellow;
     
 }
 
 body {
     background-color: lightblue;
     border-color: red;
+    border-width: medium;
 }
 
 p {
