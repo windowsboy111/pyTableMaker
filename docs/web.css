@@ -9,6 +9,7 @@ body {
     background-color: lightblue;
     border-color: red;
     border-width: medium;
+    border-style: solid;
 }
 
 p {
