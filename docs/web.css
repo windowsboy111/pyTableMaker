@@ -28,8 +28,10 @@ head.header {
 body {
     border-width: medium;
     border-style: solid;
+}
+
+p.refwarn {
     font-style: oblique;
-    
 }
 
 code {
