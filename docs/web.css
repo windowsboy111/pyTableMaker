@@ -20,11 +20,6 @@ body {
     
 }
 
-p {
-    background-color: #ff0000;
-    opacity: 0.8;
-}
-
 code {
     background-color: #888888;
     font-size: 0.7em;
