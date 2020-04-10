@@ -1,16 +1,18 @@
 from collections import OrderedDict
 class modernTable:
-    def __init__(self,data:dict=OrderedDict(), colMaxLen:list=[]):
+    def __repr__(self):
+        return str(self.data)
+    def __str___(self):
+        return 'modernTable'
+    def __init__(self,data=None, colMaxLen:list=[]):
         """
         Initialize a table creation. (modern table with utf-8 charactors)
         Optional arg1: data.  type is dict.
         Optional arg2: colMaxLen.  type is list.  Must be passed if you have the dict (arg1) passed.
         """
-        self.data = data
+        self.data = data or OrderedDict()
         self.row = 0
         self.colMaxLen = colMaxLen
-
-
 
 
     def new_column(self,name):
@@ -48,7 +50,7 @@ class modernTable:
             def moveToEnd(self):
                 """
                 move a column
-                arg1: location:int. (it's an index of a list)
+                no arguments
                 """
                 self.obj.colMaxLen.insert(self.location, self.obj.colMaxLen.pop(self.location))
                 self.location = len(self.obj.colMaxLen) -1
@@ -79,7 +81,7 @@ class modernTable:
         result = '╔'                                                # top line
         colNum = 0
         for column in self.data:
-            for i in range(0,self.colMaxLen[colNum]+2):
+            for i in range(self.colMaxLen[colNum]+2):
                 result += '═'
             result += '╦'
             colNum += 1
@@ -91,7 +93,7 @@ class modernTable:
         for column in self.data:
             result += f'║ {column} '
             neededSpaces = self.colMaxLen[colNum] - len(column)     # the column string subtract from needed full length
-            for i in range(0,neededSpaces):
+            for i in range(neededSpaces):
                 result += ' '
             colNum += 1
         result += '║\n'
@@ -102,7 +104,7 @@ class modernTable:
             colNum = 0
             # the top bar
             for column in self.data:
-                for i in range(0,self.colMaxLen[colNum]+2):
+                for i in range(self.colMaxLen[colNum]+2):
                     result += '═'
                 result += '╬'
                 colNum += 1
@@ -115,7 +117,7 @@ class modernTable:
                 value = self.data[column][rowNum]
                 result += f'║ {value}'
                 neededSpaces = self.colMaxLen[colNum] - len(value)
-                for i in range(0,neededSpaces+1):
+                for i in range(neededSpaces+1):
                     result += ' '
                 colNum += 1
             result += '║\n'
@@ -124,7 +126,7 @@ class modernTable:
         result += '╚'
         colNum = 0
         for column in self.data:
-            for i in range(0,self.colMaxLen[colNum]+2):
+            for i in range(self.colMaxLen[colNum]+2):
                 result += '═'
             result += '╩'
             colNum += 1
@@ -157,12 +159,14 @@ class modernTable:
 
 
 class classicTable(modernTable):
+    def __str__(self):
+        return 'classicTable'
     def get(self):
         """Return back the table in string.  No arguments."""
         result = '+'                                                # top line
         colNum = 0
         for column in self.data:
-            for i in range(0,self.colMaxLen[colNum]+2):
+            for i in range(self.colMaxLen[colNum]+2):
                 result += '-'
             result += '+'
             colNum += 1
@@ -174,18 +178,18 @@ class classicTable(modernTable):
         for column in self.data:
             result += f'| {column} '
             neededSpaces = self.colMaxLen[colNum] - len(column)     # the column string subtract from needed full length
-            for i in range(0,neededSpaces):
+            for i in range(neededSpaces):
                 result += ' '
             colNum += 1
         result += '|\n'
 
         # every row and every top bar
-        for rowNum in range(0,self.row):
+        for rowNum in range(self.row):
             result += '+'
             colNum = 0
             # the top bar
             for column in self.data:
-                for i in range(0,self.colMaxLen[colNum]+2):
+                for i in range(self.colMaxLen[colNum]+2):
                     result += '-'
                 result += '+'
                 colNum += 1
@@ -198,7 +202,7 @@ class classicTable(modernTable):
                 value = self.data[column][rowNum]
                 result += f'| {value}'
                 neededSpaces = self.colMaxLen[colNum] - len(value)
-                for i in range(0,neededSpaces+1):
+                for i in range(neededSpaces+1):
                     result += ' '
                 colNum += 1
             result += '|\n'
@@ -207,7 +211,7 @@ class classicTable(modernTable):
         result += '+'
         colNum = 0
         for column in self.data:
-            for i in range(0,self.colMaxLen[colNum]+2):
+            for i in range(self.colMaxLen[colNum]+2):
                 result += '-'
             result += '+'
             colNum += 1

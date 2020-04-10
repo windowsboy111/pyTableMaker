@@ -1,0 +1,15 @@
+head {
+    border-style: solid;
+    border-width: 2px;
+    
+}
+
+body {
+    background-color: lightblue;
+    border-color: red;
+}
+
+p {
+    background-color: lightcoral;
+    opacity: 0.8;
+}
