@@ -1,8 +1,10 @@
-.header {
+head.header {
     border-style: solid;
     border-width: medium;
     border-color: lightgoldenrodyellow;
-    
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 3em;
 }
 
 body {
@@ -10,9 +12,18 @@ body {
     border-color: red;
     border-width: medium;
     border-style: solid;
+    font-style: oblique;
+    
 }
 
 p {
     background-color: lightcoral;
     opacity: 0.8;
+}
+
+code {
+    background-color: lightgray;
+    font-size: 0.7em;
+    color: white;
+    font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 }
