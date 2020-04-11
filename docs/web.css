@@ -47,6 +47,9 @@ p.refwarn {
     font-style: oblique;
 }
 
+pre.prettyprint {
+    background-color: #888888;
+}
 code {
     background-color: #888888;
     font-size: 0.7em;
