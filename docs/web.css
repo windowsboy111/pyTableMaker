@@ -7,16 +7,12 @@ html {
 
 h1 {
     color:#ffff00;
-    position: -webkit-sticky;
-    position: sticky;
     top: 40px;
     background-color: darkblue;
 }
 
 h2 {
     color: lime;
-    position: -webkit-sticky;
-    position: sticky;
     top: 80px;
     background-color: darkblue;
 }
@@ -26,6 +22,8 @@ h3 {
 }
 
 pre.header {
+    position: -webkit-sticky;
+    position: sticky;
     border-style: solid;
     border-width: medium;
     border-color: lightgoldenrodyellow;
@@ -35,6 +33,7 @@ pre.header {
     margin-right: 10em;
     margin-left: 1em;
     width: 600px;
+    font-size: larger;
 }
 
 body {
