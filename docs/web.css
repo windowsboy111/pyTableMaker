@@ -50,8 +50,9 @@ pre.prettyprint {
     background-color: #888888;
     margin-right: 40em;
     margin-left: 20px;
+    border-radius: 10px;
 }
-code {
+div.codePar {
     background-color: #888888;
     font-size: 0.7em;
     color: white;
