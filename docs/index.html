@@ -13,44 +13,49 @@
         <p class=refwarn>Editing or using the code is permitted as long as there's a reference to this repo (such as a link).</p>
         <p class=refwarn>Ignore this if you are the only one to use that library inside your code and no one is going to view your code.</p>
         <h3>Usage:</h5>
-        <p>
-            Check the example in example.py
-        </p>
-        <code>
-            <p>t1 = modernTable()                       # init new table t</p>
-            <p>col1 = t1.new_column('col1')             # add column named "col1" to t</p>
-            <p>col2 = t1.new_column('col2')             # add column named "col2" to t</p>
-            <p>col3 = t1.new_column('col3')             # add column named "col3" to t</p>
-            <p>col1.delete()                            # self-explainatory</p>
-            <p>col2.rename('wow')                       # rename column and move it to the end</p>
-            <p>col2.moveToEnd()                         # self-explainatory</p>
-            <p>t1.insert('a',1.1235)                    # insert new row with value (1,     'a', 1.1235)</p>
-            <p>t1.insert('bc',3.14159)                  # insert new row with value (2,     'bc',3.14159)</p>
-            <p>t1.insert('d',9.00001)                   # insert new row with value (11110, 'd', 9.00001)</p>
-            <p>print(t1.get())                          # get table t in String and print outg</p>
-            <p>print(t1.data)                           # get the raw dictionary of the table.</p>
-            <p>print(t1.row)                            # number of rows</p>
-            <p>del t1</p>
-            <br>
-            <p>t2 = classicTable()</p>
-            <p>id = t2.new_column('id')</p>
-            <p>name = t2.new_column('name')</p>
-            <p>price = t2.new_column('price')</p>
-            <p>remarks = t2.new_column('note')</p>
-            <br>
-            <p>remarks.rename('remarks')</p>
-            <p>description = t2.new_column('desctription')</p>
-            <p>price.moveToEnd()</p>
-            <p>remarks.moveToEnd()</p>
-            <br>
-            <p>print(t2)</p>
-            <p>print(str(repr(t2)))</p>
-            <br>
-            <p>t2.insert(0,'coke',          'A popular drink in brown color',   3.5,   'Need more, ppl keep buying, keep running out!') # in my country a can of coke is 3 dollars</p>
-            <p>t2.insert(1,'chips',         None,                               0xffff,"It's come from the space lol idk.") # jk</p>
-            <p>t2.insert(2,'tea',           'Hot green tea i guess.',           5,     None)</p>
-            <p>t2.insert(3,'Cup noodles',   None,                               40,    'Need many cuz Corona Virus.')</p>
-            <p>print(t2.get())</p>
-        </code>
+        <p>Check the example in example.py</p>
+        <div id="codeSnippet">
+            <pre>
+                <code>
+                    #!/bin/python3
+                    from table import *
+                    t1 = modernTable()                       # init new table t
+                    col1 = t1.new_column('col1')             # add column named "col1" to t
+                    col2 = t1.new_column('col2')             # add column named "col2" to t
+                    col3 = t1.new_column('col3')             # add column named "col3" to t
+                    col1.delete()                            # self-explainatory
+                    col2.rename('wow')                       # rename column and move it to the end
+                    col2.moveToEnd()                         # self-explainatory
+                    t1.insert('a',1.1235)                    # insert new row with value (1,     'a', 1.1235)
+                    t1.insert('bc',3.14159)                  # insert new row with value (2,     'bc',3.14159)
+                    t1.insert('d',9.00001)                   # insert new row with value (11110, 'd', 9.00001)
+                    print(t1.get())                          # get table t in String and print outg
+                    print(t1.data)                           # get the raw dictionary of the table.
+                    print(t1.row)                            # number of rows
+                    del t1
+
+
+                    t2 = classicTable()
+                    id = t2.new_column('id')
+                    name = t2.new_column('name')
+                    price = t2.new_column('price')
+                    remarks = t2.new_column('note')
+
+                    remarks.rename('remarks')
+                    description = t2.new_column('desctription')
+                    price.moveToEnd()
+                    remarks.moveToEnd()
+
+                    print(t2)
+                    print(str(repr(t2)))
+
+                    t2.insert(0,'coke',          'A popular drink in brown color',   3.5,   'Need more, ppl keep buying, keep running out!') # in my country a can of coke is 3 dollars
+                    t2.insert(1,'chips',         None,                               0xffff,"It's come from the space lol idk.") # jk
+                    t2.insert(2,'tea',           'Hot green tea i guess.',           5,     None)
+                    t2.insert(3,'Cup noodles',   None,                               40,    'Need many cuz Corona Virus.')
+                    print(t2.get())
+                </code>
+            </pre>
+        </div>
     </body>
 </html>
