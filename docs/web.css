@@ -6,10 +6,16 @@ html {
 
 h1 {
     color:#ffff00;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 40px;
 }
 
 h2 {
     color: lime;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
 }
 
 h3 {
@@ -28,6 +34,7 @@ head.header {
 body {
     border-width: medium;
     border-style: solid;
+    border-color: blue;
 }
 
 p.refwarn {
