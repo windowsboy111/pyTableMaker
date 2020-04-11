@@ -3,9 +3,9 @@ t1 = modernTable()                       # init new table t
 col1 = t1.new_column('col1')             # add column named "col1" to t
 col2 = t1.new_column('col2')             # add column named "col2" to t
 col3 = t1.new_column('col3')             # add column named "col3" to t
-col1.delete()                           # self-explainatory
-col2.rename('wow')                      # rename column and move it to the end
-col2.moveToEnd()                        # self-explainatory
+col1.delete()                            # self-explainatory
+col2.rename('wow')                       # rename column and move it to the end
+col2.moveToEnd()                         # self-explainatory
 t1.insert('a',1.1235)                    # insert new row with value (1,     'a', 1.1235)
 t1.insert('bc',3.14159)                  # insert new row with value (2,     'bc',3.14159)
 t1.insert('d',9.00001)                   # insert new row with value (11110, 'd', 9.00001)

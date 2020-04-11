@@ -8,52 +8,62 @@
         <h2>The table maker (library) for python.</h2>
         <h3>windowsboy111</h3>
     </pre>
+    <!-- Side navigation -->
+    <div class="sidenav">
+        <a href="#">Github</a>
+        <a href="#">My other projects</a>
+        <a href="#">Youtube</a>
+        <a href="#">Social Media</a>
+    </div>
+    <!-- Page content -->
+    <div class="main">
+        <body>
 
-    <body>
-
-        <a href="https://github.com/windowsboy111/pyTableMaker">See the repo on github</a>
-        <p class='refwarn'>Editing or using the code is permitted as long as there's a reference to this repo (such as a link).</p>
-        <p class='refwarn'>Ignore this if you are the only one to use that library inside your code and no one is going to view your code.</p>
-        <h3>Usage:</h5>
-        <p>Check the example in example.py</p>
-        <div class='codePar'><pre class='prettyprint'><code class='prettyprint'>
-            #!/bin/python3
-            from table import *
-            t1 = modernTable()                       # init new table t
-            col1 = t1.new_column('col1')             # add column named "col1" to t
-            col2 = t1.new_column('col2')             # add column named "col2" to t
-            col3 = t1.new_column('col3')             # add column named "col3" to t
-            col1.delete()                            # self-explainatory
-            col2.rename('wow')                       # rename column and move it to the end
-            col2.moveToEnd()                         # self-explainatory
-            t1.insert('a',1.1235)                    # insert new row with value (1,     'a', 1.1235)
-            t1.insert('bc',3.14159)                  # insert new row with value (2,     'bc',3.14159)
-            t1.insert('d',9.00001)                   # insert new row with value (11110, 'd', 9.00001)
-            print(t1.get())                          # get table t in String and print outg
-            print(t1.data)                           # get the raw dictionary of the table.
-            print(t1.row)                            # number of rows
-            del t1
+            <a href="https://github.com/windowsboy111/pyTableMaker">See the repo on github</a>
+            <p class='refwarn'>Editing or using the code is permitted as long as there's a reference to this repo (such as a link).</p>
+            <p class='refwarn'>Ignore this if you are the only one to use that library inside your code and no one is going to view your code.</p>
+            <h3>Usage:</h5>
+            <p>Check the example in example.py</p>
+            <div class='codePar'><pre class='prettyprint'><code class='prettyprint'>
+                #!/bin/python3
+                from table import *
+                t1 = modernTable()                       # init new table t
+                col1 = t1.new_column('col1')             # add column named "col1" to t
+                col2 = t1.new_column('col2')             # add column named "col2" to t
+                col3 = t1.new_column('col3')             # add column named "col3" to t
+                col1.delete()                            # self-explainatory
+                col2.rename('wow')                       # rename column and move it to the end
+                col2.moveToEnd()                         # self-explainatory
+                t1.insert('a',1.1235)                    # insert new row with value (1,     'a', 1.1235)
+                t1.insert('bc',3.14159)                  # insert new row with value (2,     'bc',3.14159)
+                t1.insert('d',9.00001)                   # insert new row with value (11110, 'd', 9.00001)
+                print(t1.get())                          # get table t in String and print outg
+                print(t1.data)                           # get the raw dictionary of the table.
+                print(t1.row)                            # number of rows
+                del t1
 
 
-            t2 = classicTable()
-            id = t2.new_column('id')
-            name = t2.new_column('name')
-            price = t2.new_column('price')
-            remarks = t2.new_column('note')
+                t2 = classicTable()
+                id = t2.new_column('id')
+                name = t2.new_column('name')
+                price = t2.new_column('price')
+                remarks = t2.new_column('note')
 
-            remarks.rename('remarks')
-            description = t2.new_column('desctription')
-            price.moveToEnd()
-            remarks.moveToEnd()
+                remarks.rename('remarks')
+                description = t2.new_column('desctription')
+                price.moveToEnd()
+                remarks.moveToEnd()
 
-            print(t2)
-            print(str(repr(t2)))
+                print(t2)
+                print(str(repr(t2)))
 
-            t2.insert(0,'coke',          'A popular drink in brown color',   3.5,   'Need more, ppl keep buying, keep running out!') # in my country a can of coke is 3 dollars
-            t2.insert(1,'chips',         None,                               0xffff,"It's come from the space lol idk.") # jk
-            t2.insert(2,'tea',           'Hot green tea i guess.',           5,     None)
-            t2.insert(3,'Cup noodles',   None,                               40,    'Need many cuz Corona Virus.')
-            print(t2.get())
-        </code></pre></div>
-    </body>
+                t2.insert(0,'coke',          'A popular drink in brown color',   3.5,   'Need more, ppl keep buying, keep running out!') # in my country a can of coke is 3 dollars
+                t2.insert(1,'chips',         None,                               0xffff,"It's come from the space lol idk.") # jk
+                t2.insert(2,'tea',           'Hot green tea i guess.',           5,     None)
+                t2.insert(3,'Cup noodles',   None,                               40,    'Need many cuz Corona Virus.')
+                print(t2.get())
+            </code></pre></div>
+        </body>
+    </div> 
+
 </html>
