@@ -41,9 +41,10 @@ p.refwarn {
 
 pre.prettyprint {
     background-color: #888888;
-    margin-right: 10em;
     margin-left: 20px;
+    border-style: hidden;
     border-radius: 10px;
+    border-color: #888888;
 }
 div.codePar {
     background-color: #888888;
