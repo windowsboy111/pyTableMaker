@@ -32,7 +32,7 @@ pre.header {
     font-weight: bold;
     margin-right: 10em;
     margin-left: 1em;
-    width: 600px;
+    width: 40%;
     font-size: larger;
 }
 
@@ -61,6 +61,7 @@ div.codePar {
     white-space: -moz-pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
+    width: 60%;
 }
 
 
