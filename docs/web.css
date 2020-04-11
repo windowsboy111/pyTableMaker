@@ -54,7 +54,7 @@ pre.prettyprint {
 }
 div.codePar {
     background-color: #888888;
-    font-size: 2em;
+    font-size: 1em;
     color: white;
     font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
     white-space: pre-wrap;
