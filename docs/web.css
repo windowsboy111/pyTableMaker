@@ -10,6 +10,8 @@ h1 {
     position: -webkit-sticky;
     position: sticky;
     top: 40px;
+    margin-right: 5vm;
+    background-color: darkblue;
 }
 
 h2 {
@@ -17,6 +19,8 @@ h2 {
     position: -webkit-sticky;
     position: sticky;
     top: 80px;
+    margin-right: 5vm;
+    background-color: darkblue;
 }
 
 h3 {
