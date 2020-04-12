@@ -52,17 +52,16 @@ div code.prettyprint {
 
 div.codePar {
     border-radius: 2em;
-    padding-left: 2.5em;
-    padding-top: 1.5em;
-    padding-bottom: 2em;
+    padding: 1.5em 2em 2em 2.5em;
     background-color: lightgrey;
-    padding-right: 160px;
+    margin-right: 160px;
     color: white;
     font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
+    width: max-content;
 }
 
 
@@ -90,6 +89,7 @@ div.codePar {
     font-size: 25px;
     color: #818181;
     display: block;
+    transition: 0.3s;
 }
   
 /* When you mouse over the navigation links, change their color */
@@ -113,16 +113,18 @@ button {
     padding: 1em 0.5em;
     background-color: lightblue;
     color: black;
+    transition: 0.5s;
+    border-color: white;
 }
 
 button:visited {
     color: white;
     background-color: #00ffff;
-    border-color: blue;
 }
 
 button:hover {
     background-color: #00ffff;
+    border-color: blue;
 }
 
 button:active {
