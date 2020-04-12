@@ -12,7 +12,6 @@ t1.insert('d',9.00001)                   # insert new row with value (11110, 'd'
 print(t1.get())                          # get table t in String and print outg
 print(t1.data)                           # get the raw dictionary of the table.
 print(t1.row)                            # number of rows
-del t1
 
 
 t2 = classicTable()
