@@ -109,25 +109,27 @@ div.codePar {
     .sidenav a {font-size: 18px;}
 } 
 
-button {
+a.btn {
     padding: 1em 0.5em;
     background-color: lightblue;
     color: black;
     transition: 0.5s;
     border-color: white;
+    border-width: 2px;
+    border-style: outset;
 }
 
-button:visited {
-    color: white;
-    background-color: #00ffff;
+a.btn:visited {
+    color: blue;
+    background-color: lightblue;
 }
 
-button:hover {
+a.btn:hover {
     background-color: #00ffff;
     border-color: blue;
 }
 
-button:active {
+a.btn:active {
     color: black;
     background-color: lightblue;
     border-color: lightblue;
