@@ -52,7 +52,7 @@ class modernTable:
                 move a column
                 no arguments
                 """
-                self.obj.colMaxLen.insert(self.location, self.obj.colMaxLen.pop(self.location))
+                self.obj.data[self.name] = self.obj.data.pop(self.name)
                 self.location = len(self.obj.colMaxLen) -1
         return column(self,name)
 
@@ -218,4 +218,66 @@ class classicTable(modernTable):
             colNum += 1
         result = result[:-1]
         result += '+\n'
+        return result
+
+
+class onelineTable(modernTable):
+    def __str__(self):
+        return 'onelineTable'
+    def get(self):
+        """Return back the table in string.  No arguments."""
+        result = '┌'                                                # top line
+        colNum = 0
+        for column in self.data:
+            for i in range(self.colMaxLen[colNum]+2):
+                result += '─'
+            result += '┬'
+            colNum += 1
+        result = result[:-1]
+        result += '┐\n'
+
+        # 2nd line loop
+        colNum = 0
+        for column in self.data:
+            result += f'│ {column} '
+            neededSpaces = self.colMaxLen[colNum] - len(column)     # the column string subtract from needed full length
+            for i in range(neededSpaces):
+                result += ' '
+            colNum += 1
+        result += '│\n'
+
+        # every row and every top bar
+        for rowNum in range(self.row):
+            result += '├'
+            colNum = 0
+            # the top bar
+            for column in self.data:
+                for i in range(self.colMaxLen[colNum]+2):
+                    result += '─'
+                result += '┼'
+                colNum += 1
+            result = result[:-1]
+            result += '┤\n'
+
+            # the value
+            colNum = 0
+            for column in self.data:
+                value = self.data[column][rowNum]
+                result += f'│ {value}'
+                neededSpaces = self.colMaxLen[colNum] - len(value)
+                for i in range(neededSpaces+1):
+                    result += ' '
+                colNum += 1
+            result += '│\n'
+        
+        # finish the bottom of the table
+        result += '└'
+        colNum = 0
+        for column in self.data:
+            for i in range(self.colMaxLen[colNum]+2):
+                result += '─'
+            result += '┴'
+            colNum += 1
+        result = result[:-1]
+        result += '┘\n'
         return result
