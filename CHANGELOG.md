@@ -2,9 +2,12 @@
     windowsboy111
 
 ## [Unreleased]
+
+## [1.2.1] - 2020-05-16
 ### Added
 - readme added run on repl.it badge.
 - changelog check changes section
+- Avaliable on pypi!
 ### Removed
 - `dict()` has been replaced.
 
@@ -56,7 +59,8 @@
 - example for the library.
 - a basic table class.
 
-[Unreleased]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/windowsboy111/pyTableMaker/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/windowsboy111/pyTableMaker/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/windowsboy111/pyTableMaker/compare/v0.1.0...v1.0.0
