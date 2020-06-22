@@ -1,4 +1,3 @@
-from collections import OrderedDict
 class invalidSettings(Exception):
     """The settings passed via kwargs from the constructor of the class is invalid"""
     def __init__(self,message,possible=None,reason=""):
@@ -16,8 +15,6 @@ class invalidSettings(Exception):
         return self.message
     def __repr__(self):
         return {'error':invalidSettings,'message':self.message,'possible':self.possible,'reason':self.reason}
-def dummy_func(var=None):
-    return var
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 class customTable:
     def __repr__(self):
@@ -34,13 +31,15 @@ class customTable:
         self._init(style,kwargs,data,colMaxLen)
     def _init(self,style:list,kwargs,data=None,colMaxLen:list=[]):
         self.style = style
-        self.data = data or OrderedDict()
+        self.data = data or dict()
         self.row = 0
         self.colMaxLen = colMaxLen
         self.settings = {"align": "left","linespacing": 0,"exp":False}
         if kwargs is not None:
             for key,value in kwargs.items():
                 self.settings[key] = value or self.settings[key]
+    def copy(self):
+        return self
     def new_column(self,name):
         class column:
             def __init__(self,table,name):
@@ -103,12 +102,29 @@ class customTable:
             loopCount += 1
         if self.settings['exp']:
             return self
-    def get(self):
+        return self.colMaxLen
+    def remove(self, index):
+        """
+        remove a row.
+        arg1: index. count from 0. rowNum.
+        return: removed items / values
+        """
+        result = list()
+        self.row -= 1
+        loopCount = 0
+        for column in self.data:
+            result.append(self.data[column].pop(index))
+            self.colMaxLen[loopCount] = max(self.data[column])
+            loopCount += 1
+        if self.settings['exp']:
+            return self
+        return result
+    def get(self,rq=0):
         """Return back the table in string.  No arguments."""
-        return self._get()
+        return self._get(rq)
     def _get_l(self,style12,result,rowNum=-1):
         if self.settings['linespacing'] != 0:
-            for i in range(self.settings['linespacing']):
+            for i in range(self.settings['linespacing']): # pylint: disable=unused-variable
                 colNum = 0
                 for column in self.data:
                     if rowNum != -1:
@@ -116,7 +132,6 @@ class customTable:
                     result += f'{style12} ' + ' '*self.colMaxLen[colNum] + ' '
                     colNum += 1
                 result += style12 + '\n'
-                dummy_func(i)
         colNum = 0
         if self.settings['align'] == 'left':
             for column in self.data:
@@ -155,20 +170,21 @@ class customTable:
                     colNum += 1
                 result += style12 + '\n'
         return result
-    def _get(self):
+    def _get(self,rq):
+        rq = rq or self.row
         result = self.style[0]                                                # top line
         colNum = 0
-        for column in self.data:
+        for column in self.data: # pylint: disable=unused-variable
             result += self.style[1]*(self.colMaxLen[colNum]+2)
             result += self.style[3]
             colNum += 1
-            dummy_func(column)
         result = result[:-1]
         result += self.style[2] + '\n'
         # 2nd line loop
         result = self._get_l(self.style[12],result)
         # every row and every top bar
-        for rowNum in range(0,self.row):
+        i = 0
+        for rowNum in range(self.row):
             result += self.style[4]
             colNum = 0
             # the top bar
@@ -180,6 +196,9 @@ class customTable:
             result += self.style[6] + '\n'
             # the value
             result = self._get_l(self.style[12],result,rowNum)
+            i+=1
+            if i >= rq:
+                break
         # finish the bottom of the table
         result += self.style[8]
         colNum = 0
@@ -190,20 +209,8 @@ class customTable:
         result = result[:-1]
         result += self.style[10] + '\n'
         return result
-    def remove(self,rowNum):
-        """
-        remove a row
-        arg1: rowNum.  (index of a list)
-        return: list with all removed values
-        """
-        result = list()
-        for column in self.data:
-            result.append(self.data[column].pop(rowNum))
-        if self.settings['exp']:
-            return self
-        return result
-    def show(self):
-        print(self.get())
+    def show(self,rq=0):
+        print(self.get(rq))
         if self.settings['exp']:
             return self
 
@@ -216,8 +223,8 @@ class modernTable(customTable):
         Initialize a Modern Table creation.\
         """
         self._init(['╔','═','╗','╦','╠','═','╣','╬','╚','═','╝','╩','║'],kwargs,data,colMaxLen)
-    def get(self):
-        return self._get()
+    def get(self,rq=0):
+        return self._get(rq)
 
 
 class classicTable(customTable):
@@ -228,9 +235,9 @@ class classicTable(customTable):
         Initialize a classic table creation, which is formed with + | and -.\
         """
         self._init(['+','-','+','+','+','-','+','+','+','-','+','+','|'],kwargs,data,colMaxLen)
-    def get(self):
+    def get(self,rq=0):
         """Return back the table in string.  No arguments."""
-        return self._get()
+        return self._get(rq)
 
 
 class onelineTable(customTable):
@@ -241,8 +248,8 @@ class onelineTable(customTable):
         Initialize a modern table creation, but have one border instead of double borders.\
         """
         self._init(['┌','─','┐','┬','├','─','┤','┼','└','─','┘','┴','│'],kwargs,data,colMaxLen)
-    def get(self):
-        return self._get()
+    def get(self,rq=0):
+        return self._get(rq)
 
 
 #####################################################################################################################################################################

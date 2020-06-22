@@ -1,12 +1,25 @@
 # Changelog of pyTableMaker
     windowsboy111
 
+---
+
 ## [Unreleased]
+
+## [1.3-a] - 2020-06-22
+### Added
+- you can now show limited rows with `get(n)` or `show(n)` in which `n` is the number of rows you want.
+### Fixed
+- `insert()` did not return `colMaxLen` in normal mode.
+- `remove()` fixed.
+### Changed
+- `dummy_func()` is no longer used. Instead we have `# pylint: disable=unused-variable`.
+### Removed
+- `OrderedDict()`. Bruh time! Last update I forgot to remove it for some reason...
 
 ## [1.2.1] - 2020-05-16
 ### Added
 - readme added run on repl.it badge.
-- changelog check changes section
+- changelog check changes section.
 - Avaliable on pypi!
 ### Removed
 - `dict()` has been replaced.
@@ -59,7 +72,8 @@
 - example for the library.
 - a basic table class.
 
-[Unreleased]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/windowsboy111/pyTableMaker/compare/v1.3-a...HEAD
+[1.3-a]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.1...v1.3-a
 [1.2.1]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/windowsboy111/pyTableMaker/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/windowsboy111/pyTableMaker/compare/v1.0.0...v1.1.0

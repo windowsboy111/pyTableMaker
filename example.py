@@ -1,4 +1,4 @@
-from table import *
+from table import * # pylint: disable=unused-wildcard-import
 t1 = modernTable()                       # init new table t (in this situation the type is modernTable)
 col1 = t1.new_column('col1')             # add column named "col1" to t
 col2 = t1.new_column('col2')             # this method will return a column object
@@ -27,7 +27,8 @@ t2 = classicTable(align='right',exp=True)\
     .insert(1,'chips',         None,                               0xffff,"It comes from the space lol idk.")\
     .insert(2,'tea',           'Hot green tea i guess.',           5,     None)\
     .insert(3,'Cup noodles',   None,                               40,    'Need many cuz Corona Virus.')\
-    .show() # just a side note that there's a show() method so you don't need to do print(t.get())
+    .show(2) # you can specify how many rows to get as a argument. (0 is ignored)
+#   ~^~~~~~~  just a side note that there's a show() method so you don't need to do print(t.get())
 print(t2)
 print(repr(t2))
 
