@@ -1,7 +1,0 @@
-README.md
-pyTableMaker
-setup.py
-pyTableMaker.egg-info/PKG-INFO
-pyTableMaker.egg-info/SOURCES.txt
-pyTableMaker.egg-info/dependency_links.txt
-pyTableMaker.egg-info/top_level.txt
