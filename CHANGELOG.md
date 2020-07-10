@@ -5,6 +5,13 @@
 
 ## [Unreleased]
 
+## [1.3-a1]
+### Changed
+- Table classes now looks like this: `CustomTable`, `ModernTable` instead of `camelCase`
+### Fixed
+- `.copy()` now clone a table to `CustomTable`
+- following syntax rules (PEP)
+
 ## [1.3-a] - 2020-06-22
 ### Added
 - you can now show limited rows with `get(n)` or `show(n)` in which `n` is the number of rows you want.
@@ -72,10 +79,11 @@
 - example for the library.
 - a basic table class.
 
-[Unreleased]: https://github.com/windowsboy111/pyTableMaker/compare/v1.3-a...HEAD
-[1.3-a]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.1...v1.3-a
-[1.2.1]: https://github.com/windowsboy111/pyTableMaker/compare/v1.2.0...v1.2.1
-[1.2.0]: https://github.com/windowsboy111/pyTableMaker/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/windowsboy111/pyTableMaker/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/windowsboy111/pyTableMaker/compare/v0.1.0...v1.0.0
-[0.1.0]: https://github.com/windowsboy111/pyTableMaker/releases/tag/v0.1.0
+[Unreleased]:   https://github.com/windowsboy111/pyTableMaker/compare/1.3-a1...HEAD
+[1.3-a1]:       https://github.com/windowsboy111/pyTableMaker/compare/1.3-a...1.3-a1
+[1.3-a]:        https://github.com/windowsboy111/pyTableMaker/compare/1.2.1...1.3-a
+[1.2.1]:        https://github.com/windowsboy111/pyTableMaker/compare/v1.2.0...1.2.1
+[1.2.0]:        https://github.com/windowsboy111/pyTableMaker/compare/v1.1.0...v1.2.0
+[1.1.0]:        https://github.com/windowsboy111/pyTableMaker/compare/v1.0.0...v1.1.0
+[1.0.0]:        https://github.com/windowsboy111/pyTableMaker/compare/v0.1.0...v1.0.0
+[0.1.0]:        https://github.com/windowsboy111/pyTableMaker/releases/tag/v0.1.0
