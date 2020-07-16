@@ -1,4 +1,4 @@
-class InvalidSettings(Exception):
+class invalidSettings(Exception):
     """The settings passed via kwargs from the constructor of the class is invalid"""
 
     def __init__(self, message, possible=None, reason=""):
@@ -11,10 +11,10 @@ class InvalidSettings(Exception):
         return self.message
 
     def __repr__(self):
-        return {'error': InvalidSettings, 'message': self.message, 'possible': self.possible, 'reason': self.reason}
+        return {'error': invalidSettings, 'message': self.message, 'possible': self.possible, 'reason': self.reason}
 
 
-class CustomTable:
+class customTable:
     def __repr__(self):
         return str(self.data)
 
@@ -228,7 +228,7 @@ class CustomTable:
             return self
 
 
-class ModernTable(CustomTable):
+class modernTable(customTable):
     def __str___(self):
         return 'modernTable'
 
@@ -242,7 +242,7 @@ class ModernTable(CustomTable):
         return self._get(rq)
 
 
-class ClassicTable(CustomTable):
+class classicTable(customTable):
     def __str__(self):
         return 'classicTable'
 
@@ -257,7 +257,7 @@ class ClassicTable(CustomTable):
         return self._get(rq)
 
 
-class OnelineTable(CustomTable):
+class onelineTable(customTable):
     def __str__(self):
         return 'onelineTable'
 

@@ -1,5 +1,5 @@
 from table import *  # pylint: disable=unused-wildcard-import
-t1 = ModernTable()                       # init new table t (in this situation the type is modernTable)
+t1 = modernTable()                       # init new table t (in this situation the type is modernTable)
 col1 = t1.new_column('col1')             # add column named "col1" to t
 col2 = t1.new_column('col2')             # this method will return a column object
 col3 = t1.new_column('col3')             # to get the table of the column, use col.table or col.getTable()
@@ -16,7 +16,7 @@ print(t1.row)                            # number of rows
 
 # express mode (exp for short) is a mode that allows you to stack all the methods into a single statement.
 # to enable express mode, add a kwargs called 'exp' and set it to True:
-t2 = ClassicTable(align='right', exp=True)\
+t2 = classicTable(align='right', exp=True)\
     .new_column('id').table\
     .new_column('name').getTable()\
     .new_column('price').table\
@@ -32,7 +32,7 @@ print(t2)
 print(repr(t2))
 
 
-t3 = OnelineTable(align='center')                   # by default align is 'left', you can specify it with 'right' or 'center'
+t3 = onelineTable(align='center')                   # by default align is 'left', you can specify it with 'right' or 'center'
 time = t3.new_column('Time')
 event = t3.new_column('Event')
 remarks = t3.new_column('Remarks')
