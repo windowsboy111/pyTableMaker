@@ -2,8 +2,11 @@
     windowsboy111
 
 ---
+# [Unreleased]
+### Removed
+- revert all syntax / classname changes for last master prl
 
-## [Unreleased]
+## [OOP Update Unreleased]
 ### Added
 - support for `+`, `-`, `len()`, comparing operators such as `<`, `<=`, `!=`
 - specifying return type
@@ -61,7 +64,6 @@
 ### Deprecated
 - soon in a future update, `OrderedDict()` will be replaced with normal standard `dict()`. (Backwards compatible warning!)
 
-
 ## [1.1.0] - 2020-04-13
 ### Added
 - new type of table: `onelineTable`, similar to `modernTable`, but have only one border instead of double borders.
@@ -84,6 +86,7 @@
 - example for the library.
 - a basic table class.
 
+[OOP Update Unreleased]:    https://github.com/windowsboy111/pyTableMaker/compare/OOP-update
 [Unreleased]:   https://github.com/windowsboy111/pyTableMaker/compare/1.3-a1...HEAD
 [1.3-a1]:       https://github.com/windowsboy111/pyTableMaker/compare/1.3-a...1.3-a1
 [1.3-a]:        https://github.com/windowsboy111/pyTableMaker/compare/1.2.1...1.3-a
