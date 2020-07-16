@@ -4,6 +4,11 @@
 ---
 
 ## [Unreleased]
+### Added
+- support for `+`, `-`, `len()`, comparing operators such as `<`, `<=`, `!=`
+- specifying return type
+### Fixed
+- PEP formatting
 
 ## [1.3-a1]
 ### Changed
