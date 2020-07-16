@@ -10,7 +10,7 @@
 ### Fixed
 - PEP formatting
 
-## [1.3-a1]
+## [1.3-a1] - 2020-07-10 [YANKED]
 ### Changed
 - Table classes now looks like this: `CustomTable`, `ModernTable` instead of `camelCase`
 ### Fixed
