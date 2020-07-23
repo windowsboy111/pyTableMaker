@@ -2,10 +2,20 @@
     windowsboy111
 
 ---
+# [Unreleased]
+### Added
+- cell wraping (change it in settings / kwargs)
+### Removed
+- revert all syntax / classname changes for last master prl
 
-## [Unreleased]
+## [OOP Update Unreleased]
+### Added
+- support for `+`, `-`, `len()`, comparing operators such as `<`, `<=`, `!=`
+- specifying return type
+### Fixed
+- PEP formatting
 
-## [1.3-a1]
+## [1.3-a1] - 2020-07-10 [YANKED]
 ### Changed
 - Table classes now looks like this: `CustomTable`, `ModernTable` instead of `camelCase`
 ### Fixed
@@ -49,13 +59,12 @@
 - `customTable` is now the parent of all table classes.
 - Running `table.py` directly (i.e. `python3 table.py`) will print `lib-info` instead of doing nothing.
 - Reorganized the code, making `get()` less clutter / simplified the code so that it no longer violates the ultimate DRY rule:
-> - `__init__()` ==> `_init()` and `__init__()`              (Not recommened to call them directly)
-> - `get()`      ==> `_get()`, `_get_l()` and `get()`        (Not recommened to call `_get()` and `_get_l()` directly)
+> - `__init__()` ==> `_init()` and `__init__()`              (Not recommend to call them directly)
+> - `get()`      ==> `_get()`, `_get_l()` and `get()`        (Not recommend to call `_get()` and `_get_l()` directly)
 ### Fixed
 - no more warnings when using the library, `dummy_func()` has been added to prevent unused variable warnings.
 ### Deprecated
 - soon in a future update, `OrderedDict()` will be replaced with normal standard `dict()`. (Backwards compatible warning!)
-
 
 ## [1.1.0] - 2020-04-13
 ### Added
@@ -79,6 +88,7 @@
 - example for the library.
 - a basic table class.
 
+[OOP Update Unreleased]:    https://github.com/windowsboy111/pyTableMaker/compare/OOP-update
 [Unreleased]:   https://github.com/windowsboy111/pyTableMaker/compare/1.3-a1...HEAD
 [1.3-a1]:       https://github.com/windowsboy111/pyTableMaker/compare/1.3-a...1.3-a1
 [1.3-a]:        https://github.com/windowsboy111/pyTableMaker/compare/1.2.1...1.3-a

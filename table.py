@@ -1,3 +1,14 @@
+import utils
+
+
+DEFAULT_SETTINGS = {
+    "align":        "left",
+    "linespacing":  0,
+    "exp":          False,
+    "cellwrap":     40
+}
+
+
 class invalidSettings(Exception):
     """The settings passed via kwargs from the constructor of the class is invalid"""
 
@@ -35,13 +46,11 @@ class customTable:
         self.data = data or dict()
         self.row = 0
         self.colMaxLen = colMaxLen
-        self.settings = {"align": "left", "linespacing": 0, "exp": False}
-        if kwargs is not None:
-            for key, value in kwargs.items():
-                self.settings[key] = value or self.settings[key]
+        self.settings = DEFAULT_SETTINGS.copy()
+        self.settings.update(kwargs)
 
     def copy(self):
-        return ClassicTable(self.style, self.data, self.colMaxLen, **self.settings)
+        return customTable(self.style, self.data, self.colMaxLen, **self.settings)
 
     def new_column(self, name):
         class column:
@@ -103,10 +112,13 @@ class customTable:
         return: the longest length of columns (list)
         """
         self.row += 1
-        loopCount = 0                                                                               # for the index loop of the list
-        for column in self.data:                                                                    # column is the key
+        # for the index loop of the list
+        loopCount = 0
+        # column is the key
+        for column in self.data:
             self.data[column].append(str(values[loopCount]))
-            self.colMaxLen[loopCount] = max(self.colMaxLen[loopCount], len(str(values[loopCount])), len(column))
+            self.colMaxLen[loopCount] = max(self.colMaxLen[loopCount],
+                                            len(str(values[loopCount])))
             loopCount += 1
         if self.settings['exp']:
             return self
@@ -133,93 +145,82 @@ class customTable:
         """Return back the table in string.  No arguments."""
         return self._get(rq)
 
-    def _get_l(self, style12, result, rowNum=-1):
-        if self.settings['linespacing'] != 0:
-            for i in range(self.settings['linespacing']):  # pylint: disable=unused-variable
-                colNum = 0
-                for column in self.data:
-                    if rowNum != -1:
-                        column = self.data[column][rowNum]
-                    result += f'{style12} ' + ' ' * self.colMaxLen[colNum] + ' '
-                    colNum += 1
-                result += style12 + '\n'
-        colNum = 0
-        if self.settings['align'] == 'left':
-            for column in self.data:
-                if rowNum != -1:
-                    column = self.data[column][rowNum]
-                result += f'{style12} {column} '
-                neededSpaces = self.colMaxLen[colNum] - len(column)     # the column string subtract from needed full length
-                result += ' ' * neededSpaces
-                colNum += 1
-        elif self.settings['align'] == 'center':
-            for column in self.data:
-                if rowNum != -1:
-                    column = self.data[column][rowNum]
-                neededSpaces = self.colMaxLen[colNum] - len(column)
-                result += f'{style12} ' + ' ' * int(neededSpaces / 2) + column + ' ' * int(neededSpaces / 2) + ' '
-                if neededSpaces / 2 % 1:
-                    result += ' '
-                colNum += 1
-        elif self.settings['align'] == 'right':
-            for column in self.data:
-                if rowNum != -1:
-                    column = self.data[column][rowNum]
-                neededSpaces = self.colMaxLen[colNum] - len(column)
-                result += f'{style12} ' + ' ' * neededSpaces + f'{column} '
-                colNum += 1
-        else:
-            raise InvalidSettings("Invalid align settings passed", ['left', 'right', 'center'], f"'{self.settings['align']}' is not a valid align setting.")
-        result += style12 + '\n'
-        if self.settings['linespacing'] != 0:
-            for i in range(self.settings['linespacing']):
-                colNum = 0
-                for column in self.data:
-                    if rowNum != -1:
-                        column = self.data[column][rowNum]
-                    result += f'{style12} ' + ' ' * self.colMaxLen[colNum] + ' '
-                    colNum += 1
-                result += style12 + '\n'
+    def _add_linespacing(self, s12):
+        result = ''
+        for i in range(self.settings['linespacing']):
+            for colNum in range(len(self.data)):
+                result += f'{s12} ' + ' ' * \
+                    (self.colMaxLen[colNum] if self.colMaxLen[colNum] <= (self.settings['cellwrap'] - 2) else (self.settings['cellwrap'] - 2)) + ' '
+            result += s12 + '\n'
         return result
+
+    def _get_l(self, s12, rowNum=-1):
+        result = self._add_linespacing(s12)
+
+        colNum = 0  # get loop count ready
+        next = list()  # storing next line to be placed if cell / line wrapping is needed
+        maxLen = self.settings['cellwrap'] - 2
+        for k, v in self.data.items():
+            name = k if rowNum == -1 else v[rowNum]
+            if len(name) > maxLen:
+                next.append(name[maxLen:])
+                name = name[:maxLen]
+            else:
+                next.append('')
+            neededSpaces = (
+                self.colMaxLen[colNum] if self.colMaxLen[colNum] <= maxLen else maxLen) - len(name)
+            result += f'{s12} {name} ' + ' ' * neededSpaces
+        result = result[:-1] + ' ' + s12 + '\n'
+        while any(next):
+            loop = 0
+            theNext = list()
+            for name in next:
+                if len(name) > maxLen:
+                    theNext.append(name[maxLen:])
+                    name = name[:maxLen]
+                else:
+                    theNext.append('')
+                neededSpaces = (
+                    self.colMaxLen[colNum] if self.colMaxLen[colNum] <= maxLen else maxLen) - len(name)
+                result += f'{s12} {name} ' + ' ' * neededSpaces
+                loop += 1
+            result = result[:-1] + ' ' + s12 + '\n'
+            if theNext == ['' for col in self.data]:
+                break
+            next = theNext.copy()
+
+        result += self._add_linespacing(s12)
+        return result
+
+    def _get_struct(self, styleLeft, styleMid, styleCross, styleRight, colNum):
+        result = styleLeft
+        for column in self.data:
+            result += styleMid * ((self.colMaxLen[colNum] + 2) if (
+                self.colMaxLen[colNum] + 2) < self.settings['cellwrap'] else self.settings['cellwrap'])
+            result += styleCross
+            colNum += 1
+        return result[:-1] + styleRight + '\n'
 
     def _get(self, rq):
         rq = rq or self.row
-        result = self.style[0]  # top line
         colNum = 0
-        for column in self.data:  # pylint: disable=unused-variable
-            result += self.style[1] * (self.colMaxLen[colNum] + 2)
-            result += self.style[3]
-            colNum += 1
-        result = result[:-1]
-        result += self.style[2] + '\n'
+        result = self._get_struct(self.style[0], self.style[1], self.style[3], self.style[2], colNum)  # get line 1
         # 2nd line loop
-        result = self._get_l(self.style[12], result)
+        result += self._get_l(self.style[12])
         # every row and every top bar
         i = 0
         for rowNum in range(self.row):
-            result += self.style[4]
             colNum = 0
             # the top bar
-            for column in self.data:
-                result += self.style[5] * (self.colMaxLen[colNum] + 2)
-                result += self.style[7]
-                colNum += 1
-            result = result[:-1]
-            result += self.style[6] + '\n'
+            result += self._get_struct(self.style[4], self.style[5], self.style[7], self.style[6], colNum)
             # the value
-            result = self._get_l(self.style[12], result, rowNum)
+            result += self._get_l(self.style[12], rowNum)
             i += 1
             if i >= rq:
                 break
         # finish the bottom of the table
-        result += self.style[8]
         colNum = 0
-        for column in self.data:
-            result += self.style[9] * (self.colMaxLen[colNum] + 2)
-            result += self.style[11]
-            colNum += 1
-        result = result[:-1]
-        result += self.style[10] + '\n'
+        result += self._get_struct(self.style[8], self.style[9], self.style[11], self.style[10], colNum)
         return result
 
     def show(self, rq=0):
@@ -236,7 +237,8 @@ class modernTable(customTable):
         """\
         Initialize a Modern Table creation.\
         """
-        self._init(['╔', '═', '╗', '╦', '╠', '═', '╣', '╬', '╚', '═', '╝', '╩', '║'], data, colMaxLen, **kwargs)
+        self._init(['╔', '═', '╗', '╦', '╠', '═', '╣', '╬', '╚',
+                    '═', '╝', '╩', '║'], data, colMaxLen, **kwargs)
 
     def get(self, rq=0):
         return self._get(rq)
@@ -250,7 +252,8 @@ class classicTable(customTable):
         """\
         Initialize a classic table creation, which is formed with + | and -.\
         """
-        self._init(['+', '-', '+', '+', '+', '-', '+', '+', '+', '-', '+', '+', '|'], data, colMaxLen, **kwargs)
+        self._init(['+', '-', '+', '+', '+', '-', '+', '+', '+',
+                    '-', '+', '+', '|'], data, colMaxLen, **kwargs)
 
     def get(self, rq=0):
         """Return back the table in string.  No arguments."""
@@ -265,7 +268,8 @@ class onelineTable(customTable):
         """\
         Initialize a modern table creation, but have one border instead of double borders.\
         """
-        self._init(['┌', '─', '┐', '┬', '├', '─', '┤', '┼', '└', '─', '┘', '┴', '│'], data, colMaxLen, **kwargs)
+        self._init(['┌', '─', '┐', '┬', '├', '─', '┤', '┼', '└',
+                    '─', '┘', '┴', '│'], data, colMaxLen, **kwargs)
 
     def get(self, rq=0):
         return self._get(rq)
