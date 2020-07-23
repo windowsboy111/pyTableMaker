@@ -2,7 +2,11 @@
     windowsboy111
 
 ---
+# [OOP Update Unreleased]
+
 # [Unreleased]
+
+# [1.3-a2]
 ### Added
 - cell wraping (change it in settings / kwargs)
 ### Removed
@@ -89,7 +93,8 @@
 - a basic table class.
 
 [OOP Update Unreleased]:    https://github.com/windowsboy111/pyTableMaker/compare/OOP-update
-[Unreleased]:   https://github.com/windowsboy111/pyTableMaker/compare/1.3-a1...HEAD
+[Unreleased]:   https://github.com/windowsboy111/pyTableMaker/compare/1.3-a2...HEAD
+[1.3-a2]:       https://github.com/windowsboy111/pyTableMaker/compare/1.3-a1...1.3-a2
 [1.3-a1]:       https://github.com/windowsboy111/pyTableMaker/compare/1.3-a...1.3-a1
 [1.3-a]:        https://github.com/windowsboy111/pyTableMaker/compare/1.2.1...1.3-a
 [1.2.1]:        https://github.com/windowsboy111/pyTableMaker/compare/v1.2.0...1.2.1
