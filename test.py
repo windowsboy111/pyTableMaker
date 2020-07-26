@@ -1,7 +1,7 @@
 from table import modernTable
 
 
-t = modernTable(cellwrap=10, linespacing=1)
+t = modernTable()
 col = t.new_column('hi bro what\'s up? ha ha ha!')
 col1 = t.new_column('ahhhhhhh :)')
 t.insert('ahhhhhhhhhhhhh', "yes you get it right, finally!")

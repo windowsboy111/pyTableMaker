@@ -2,15 +2,9 @@
     windowsboy111
 
 ---
-# [OOP Update Unreleased]
-
-# [Unreleased]
-
-# [1.3-a2]
-### Added
-- cell wraping (change it in settings / kwargs)
-### Removed
-- revert all syntax / classname changes for last master prl
+## [Unreleased]
+### Fixed
+- when forming table, all columns will use the first column column length to count how many blank spaces to leave (forget to `colNum += 1` so it always uses `colMaxLen[0]`)
 
 ## [OOP Update Unreleased]
 ### Added
@@ -18,6 +12,12 @@
 - specifying return type
 ### Fixed
 - PEP formatting
+
+# [1.3-a2]
+### Added
+- cell wraping (change it in settings / kwargs)
+### Removed
+- revert all syntax / classname changes for last master prl
 
 ## [1.3-a1] - 2020-07-10 [YANKED]
 ### Changed

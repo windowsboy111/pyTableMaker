@@ -1,11 +1,9 @@
-import utils
-
-
 DEFAULT_SETTINGS = {
     "align":        "left",
     "linespacing":  0,
     "exp":          False,
-    "cellwrap":     40
+    "cellwrap":     40,
+    "linewrap":     150  # not implemented >w<
 }
 
 
@@ -158,23 +156,24 @@ class customTable:
         result = self._add_linespacing(s12)
 
         colNum = 0  # get loop count ready
-        next = list()  # storing next line to be placed if cell / line wrapping is needed
+        nextVal = list()  # storing next line to be placed if cell / line wrapping is needed
         maxLen = self.settings['cellwrap'] - 2
         for k, v in self.data.items():
             name = k if rowNum == -1 else v[rowNum]
             if len(name) > maxLen:
-                next.append(name[maxLen:])
+                nextVal.append(name[maxLen:])
                 name = name[:maxLen]
             else:
-                next.append('')
+                nextVal.append('')
             neededSpaces = (
                 self.colMaxLen[colNum] if self.colMaxLen[colNum] <= maxLen else maxLen) - len(name)
             result += f'{s12} {name} ' + ' ' * neededSpaces
+            colNum += 1
         result = result[:-1] + ' ' + s12 + '\n'
-        while any(next):
+        while any(nextVal):
             loop = 0
             theNext = list()
-            for name in next:
+            for name in nextVal:
                 if len(name) > maxLen:
                     theNext.append(name[maxLen:])
                     name = name[:maxLen]
@@ -187,7 +186,7 @@ class customTable:
             result = result[:-1] + ' ' + s12 + '\n'
             if theNext == ['' for col in self.data]:
                 break
-            next = theNext.copy()
+            nextVal = theNext.copy()
 
         result += self._add_linespacing(s12)
         return result
@@ -268,8 +267,7 @@ class onelineTable(customTable):
         """\
         Initialize a modern table creation, but have one border instead of double borders.\
         """
-        self._init(['┌', '─', '┐', '┬', '├', '─', '┤', '┼', '└',
-                    '─', '┘', '┴', '│'], data, colMaxLen, **kwargs)
+        self._init(['┌', '─', '┐', '┬', '├', '─', '┤', '┼', '└', '─', '┘', '┴', '│'], data, colMaxLen, **kwargs)
 
     def get(self, rq=0):
         return self._get(rq)
@@ -279,7 +277,6 @@ lib_info = """\
 pyTableMaker by windowsboy111
 Check out the repo:    https://github.copm/windowsboy111/pyTableMaker/
 Here's the website:    https://windowsboy111.github.io/pyTableMaker/
-By using this library, you agree the terms in both the website and README.md
 Thanks for choosing this library! Remember to share it too!\
 """
 
